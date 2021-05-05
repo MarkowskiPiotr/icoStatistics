@@ -55,3 +55,4 @@ fileName = defaultLogsLocation + str(todayDate) + "_" + currentTime + "_monthlyO
 with open(fileName, 'w') as f:
     write = csv.writer(f)
     write.writerows(openBugs)
+f.close()
