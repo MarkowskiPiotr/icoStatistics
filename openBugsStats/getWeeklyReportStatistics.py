@@ -1,18 +1,20 @@
-import getFiltersResults
-import csv
-from datetime import date, timedelta, datetime
-import sys
 import configparser
+import csv
+import os
+import sys
+from datetime import date, timedelta, datetime
+
+import getFiltersResults
 
 config = configparser.ConfigParser()
-config.read('configuration.ini')
+config.read(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'configuration.ini'))
 
 defaultNoOfDays = int(config['LOGS']['defaultNoOfDays'])
 defaultLogsLocation = config['LOGS']['defaultLogsLocation']
 
 argv = sys.argv[1:]
 
-if len(argv) >0:
+if len(argv) > 0:
     try:
         opts, args = getopt.getopt(argv, 'd:')
         if len(opts) > 1:
@@ -25,11 +27,9 @@ if len(argv) >0:
 else:
     ticketDatesRange = defaultNoOfDays
 
-
-#ticketProjects = ['SPYDINT']
+# ticketProjects = ['SPYDINT']
 ticketProjects = ['CAMINT', 'CORINT', 'IGW4000', "'MLGTINT', 'MLGTFON'", "'MLLTINT', 'MLLTFON'",
                   "'I520XTQA', 'I520XTW'", 'SPYDINT', 'I488271INT']
-
 
 todayDate = date.today()
 currentTime = datetime.now().strftime("%H_%M")
