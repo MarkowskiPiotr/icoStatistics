@@ -52,7 +52,13 @@ for filterProject in ticketProjects:
 
 fileName = defaultLogsLocation + str(todayDate) + "_" + currentTime + "_monthlyOpenTicketsStats.csv"
 
-with open(fileName, 'w') as f:
+fileName = str(todayDate) + "_" + currentTime + "_monthlyOpenTicketsStats.csv"
+dirPath = defaultLogsLocation
+resultFile = open(os.path.join(dirPath, fileName), "x")
+
+
+
+with resultFile as f:
     write = csv.writer(f)
     write.writerows(openBugs)
 f.close()
