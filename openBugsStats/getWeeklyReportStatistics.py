@@ -3,6 +3,7 @@ import csv
 import os
 import sys
 from datetime import date, timedelta, datetime
+import getopt
 
 import getFiltersResults
 
