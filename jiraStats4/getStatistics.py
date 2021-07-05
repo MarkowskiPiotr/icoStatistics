@@ -31,7 +31,7 @@ else:
 
 # ticketProjects = ["'MLGTINT', 'MLGTFON'"]
 # ticketProjects = ['CAMINT', 'CORINT', 'IGW4000', "'MLGTINT', 'MLGTFON'", "'MLLTINT', 'MLLTFON'", 'I520XTQA', 'SPYDINT', 'I488271INT' ]
-ticketProjects = ['CORINT', 'IGW4000', "'MLGTINT', 'MLGTFON'", "'MLLTINT', 'MLLTFON'", "'I520XTQA', 'I520XTW'",
+ticketProjects = ['CAMINT', 'CORINT', 'IGW4000', "'MLGTINT', 'MLGTFON'", "'MLLTINT', 'MLLTFON'", "'I520XTQA', 'I520XTW'",
                   'SPYDINT', 'I488271INT']
 ticketStatuses = ['To do', 'Ready for Work', 'In Progress', 'On Hold', 'Ready for testing', 'In Testing', 'Feedback']
 ticketPriority = ['Blocker', 'High', 'Normal', 'Low', 'Not set']
