@@ -29,10 +29,9 @@ else:
     ticketDatesRange = defaultNoOfDays
 
 # ticketProjects = ['SPYDINT']
-#ticketProjects = ['CAMINT', 'CORINT', 'IGW4000', "'MLGTINT', 'MLGTFON'", "'MLLTINT', 'MLLTFON'",
-#                  "'I520XTQA', 'I520XTW'", 'SPYDINT', 'I488271INT']
-ticketProjects = ['CORINT', 'IGW4000', 'IGW5KINT', "'MLGTINT', 'MLGTFON'", "'MLLTINT', 'MLLTFON'",
-                'SPYDINT', 'I488271INT']
+ticketProjects = ['CAMINT', 'CORINT', 'IGW4000', 'IGW5KINT', "'MLGTINT', 'MLGTFON'", "'MLLTINT', 'MLLTFON'",
+                  "'I520XTQA', 'I520XTW'", 'SPYDINT', 'I488271INT']
+
 
 todayDate = date.today()
 currentTime = datetime.now().strftime("%H_%M")
