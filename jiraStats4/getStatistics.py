@@ -1,8 +1,8 @@
 import configparser
 import getopt
-import json
 import os
 import sys
+import csv
 from datetime import date, timedelta, datetime
 
 import getFiltersResults
@@ -29,16 +29,30 @@ if len(argv) > 0:
 else:
     ticketDatesRange = defaultNoOfDays
 
-# ticketProjects = ["'MLGTINT', 'MLGTFON'"]
-# ticketProjects = ['CAMINT', 'CORINT', 'IGW4000', "'MLGTINT', 'MLGTFON'", "'MLLTINT', 'MLLTFON'", 'I520XTQA', 'SPYDINT', 'I488271INT' ]
-#ticketProjects = ['CAMINT', 'CORINT', 'IGW4000', "'MLGTINT', 'MLGTFON'", "'MLLTINT', 'MLLTFON'", "'I520XTQA', 'I520XTW'",
-#                  'SPYDINT', 'I488271INT']
 ticketProjects = ['CORINT', 'IGW4000', 'IGW5KINT', "'MLGTINT', 'MLGTFON'", "'MLLTINT', 'MLLTFON'",
                       'SPYDINT', 'I488271INT']
 ticketStatuses = ['To do', 'Ready for Work', 'In Progress', 'On Hold', 'Ready for testing', 'In Testing', 'Feedback']
 ticketPriority = ['Blocker', 'High', 'Normal', 'Low', 'Not set']
 
-projectsStatistics = {}
+projectsStatisticsHeader = ['project', 'date', 'new bugs', 'total open bugs', 'priority', '', '', '', '', '', 'Status', '', '', '', '', '', '','','Tickets waiting for tests','', '', '', '', '', '', 'Tickets currently being tested', '', '', '', '', '']
+projectsStatisticsCSV=[]
+projectsStatisticsCSV.append(projectsStatisticsHeader)
+temp=['', '', '', '']
+for tPriority in ticketPriority:
+    temp.append(tPriority)
+temp.append('')
+for tStatus in ticketStatuses:
+    temp.append(tStatus)
+temp.append('')
+temp.append('Total')
+for tPriority in ticketPriority:
+    temp.append(tPriority)
+temp.append('')
+temp.append('Total')
+for tPriority in ticketPriority:
+    temp.append(tPriority)
+projectsStatisticsCSV.append(temp)
+
 todayDate = date.today()
 
 currentTime = datetime.now().strftime("%H_%M")
@@ -51,23 +65,21 @@ for datesIterator in range(ticketDatesRange):
     filterDates.append(firstDate + timedelta(days=datesIterator))
 
 for filterProject in ticketProjects:
-    projectsStatistics[filterProject] = {}
     for filterDateIterator in (filterDates):
-        # jsonProjectsStats[str(filterDateIterator)][filterProject]={}
+        temp = []
+        temp.append(filterProject)
+        temp.append(filterDateIterator.strftime( '%Y/%m/%d'))
         previousDay = filterDateIterator - timedelta(days=1)
-        projectsStatistics[filterProject][str(filterDateIterator)] = getFiltersResults.generateStatistics(filterProject,
-                                                                                                          ticketStatuses,
-                                                                                                          ticketPriority,
-                                                                                                          filterDateIterator.strftime(
-                                                                                                              '%Y/%m/%d'),
-                                                                                                          previousDay.strftime(
-                                                                                                              '%Y/%m/%d'))
+        stats = getFiltersResults.generateStatistics(filterProject,ticketStatuses,ticketPriority,filterDateIterator.strftime( '%Y/%m/%d'), previousDay.strftime( '%Y/%m/%d'))
+        for statsIterator in stats:
+            temp.append(statsIterator)
+        projectsStatisticsCSV.append(temp)
 
-jsonResults = json.dumps(projectsStatistics, sort_keys=False, indent=4)
-fileName = str(todayDate) + "_" + currentTime + "_results.json"
+fileName = str(todayDate) + "_" + currentTime + "_statsCSV.csv"
 dirPath = defaultLogsLocation
 resultFile = open(os.path.join(dirPath, fileName), "x")
-resultFile.write(jsonResults)
-resultFile.close()
 
-sendEmail.sendEmail(jsonResults)
+with resultFile as f:
+    write = csv.writer(f)
+    write.writerows(projectsStatisticsCSV)
+f.close()
