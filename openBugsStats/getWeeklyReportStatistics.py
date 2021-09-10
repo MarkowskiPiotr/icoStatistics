@@ -28,9 +28,9 @@ if len(argv) > 0:
 else:
     ticketDatesRange = defaultNoOfDays
 
-# ticketProjects = ['SPYDINT']
+# ticketProjects = ['IA']
 ticketProjects = ['CAMINT', 'CORINT', 'IGW4000', 'IGW5KINT', "'MLGTINT', 'MLGTFON'", "'MLLTINT', 'MLLTFON'",
-                  "'I520XTQA', 'I520XTW'", 'SPYDINT', 'I488271INT']
+                   "'I520XTQA', 'I520XTW'", 'SPYDINT', 'I488271INT', 'IA']
 
 
 todayDate = date.today()

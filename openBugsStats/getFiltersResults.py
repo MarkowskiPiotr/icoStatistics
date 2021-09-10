@@ -18,13 +18,18 @@ jira = JIRA(options, basic_auth=(userName, userAPIToken))
 
 ticketClosedStatuses = "Done, Closed, \"Won't Do\",Duplicate"
 ticketOpenStatuses = "\"To Do\", Backlog, \"In Progress\", \"TODO QA\", \"Waiting for Code Review\", \"In Testing\", " \
-                     "\"Ready for testing\", \"Feedback\", \"On Hold\" ,\"Ready for work\""
+                     "\"Ready for testing\", \"Feedback\", \"On Hold\" ,\"More info needed\", \"Ready for work\", \"Selected for development\""
 
 
 def getMonthlyStatistics(filterProject, ticketDate):
-    jiraFilter = \
-        "project in (" + filterProject + ") AND type = bug AND status was in (" + ticketOpenStatuses + ")  on ('" \
-        + ticketDate + " 06:00')"
-    jiraResult = jira.search_issues(jiraFilter, maxResults=0)
-
+    if filterProject != 'IA':
+        jiraFilter = \
+            "project in (" + filterProject + ") AND type = bug AND status was in (" + ticketOpenStatuses + ")  on ('" \
+            + ticketDate + " 06:00')"
+        jiraResult = jira.search_issues(jiraFilter, maxResults=0)
+    else:
+        jiraFilter = \
+            "project in (" + filterProject + ") AND status was in (" + ticketOpenStatuses + ")  on ('" \
+            + ticketDate + " 06:00')"
+        jiraResult = jira.search_issues(jiraFilter, maxResults=0)
     return jiraResult.total
