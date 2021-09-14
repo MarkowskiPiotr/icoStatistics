@@ -57,8 +57,6 @@ todayDate = date.today()
 
 currentTime = datetime.now().strftime("%H_%M")
 
-ticketDatesRange=5
-
 firstDate = todayDate - timedelta(days=ticketDatesRange - 1)
 
 filterDates = []
