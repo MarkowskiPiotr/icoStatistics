@@ -57,12 +57,16 @@ todayDate = date.today()
 
 currentTime = datetime.now().strftime("%H_%M")
 
+ticketDatesRange=5
+
 firstDate = todayDate - timedelta(days=ticketDatesRange - 1)
 
 filterDates = []
 
 for datesIterator in range(ticketDatesRange):
-    filterDates.append(firstDate + timedelta(days=datesIterator))
+    statsDate = firstDate + timedelta(days=datesIterator)
+    if statsDate.weekday() < 5:
+        filterDates.append(statsDate)
 
 for filterProject in ticketProjects:
     for filterDateIterator in (filterDates):
