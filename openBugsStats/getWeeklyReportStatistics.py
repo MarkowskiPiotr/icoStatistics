@@ -30,7 +30,7 @@ else:
 
 # ticketProjects = ['IA']
 ticketProjects = ['CAMINT', 'CORINT', 'IGW4000', 'IGW5KINT', "'MLGTINT', 'MLGTFON'", "'MLLTINT', 'MLLTFON'",
-                   "'I520XTQA', 'I520XTW'", 'SPYDINT', 'I488271INT', 'IA']
+                   "'I520XTQA', 'I520XTW'", 'I488271INT', 'IA']
 
 
 todayDate = date.today()
