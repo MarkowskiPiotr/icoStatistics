@@ -29,8 +29,7 @@ if len(argv) > 0:
 else:
     ticketDatesRange = defaultNoOfDays
 
-ticketProjects = ['CORINT', 'IGW4000', 'IGW5KINT', "'MLGTINT', 'MLGTFON'", "'MLLTINT', 'MLLTFON'",
-                      'SPYDINT', 'I488271INT']
+ticketProjects = ['CORINT', 'IGW4000', 'IGW5KINT', "'MLGTINT', 'MLGTFON'", "'MLLTINT', 'MLLTFON'", 'I488271INT']
 ticketStatuses = ['To do', 'Ready for Work', 'In Progress', 'On Hold', 'Ready for testing', 'In Testing', 'Feedback']
 ticketPriority = ['Blocker', 'High', 'Normal', 'Low', 'Not set']
 
